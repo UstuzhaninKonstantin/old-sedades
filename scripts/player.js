@@ -7,6 +7,17 @@ export class Player extends Circle {
         this.effects = [];
     }
 
+    wallCollision() {
+        const area = this.game.entities.area[0]
+        if (!area) return;
+        console.log(area);
+      
+        if (this.x - this.radius < area.x) this.x = area.x + this.radius;
+        if (this.x + this.radius > area.x + area.width) this.x = area.x + area.width - this.radius;
+        if (this.y - this.radius < area.y) this.y = area.y + this.radius;
+        if (this.y + this.radius > area.y + area.height) this.y = area.y + area.height - this.radius;
+      }
+
     move() {
         const speed = this.applyEffects();
 
@@ -14,9 +25,6 @@ export class Player extends Circle {
         if (this.game.keysPressed['KeyA'] || this.game.keysPressed['ArrowLeft']) this.x -= speed;
         if (this.game.keysPressed['KeyS'] || this.game.keysPressed['ArrowDown']) this.y += speed;
         if (this.game.keysPressed['KeyD'] || this.game.keysPressed['ArrowRight']) this.x += speed;
-
-        this.game.camera.x = this.x;
-        this.game.camera.y = this.y;
     }
 
     applyEffects() {
@@ -28,5 +36,8 @@ export class Player extends Circle {
 
     update() {
         this.move();
+        this.wallCollision();
+        this.game.camera.x = this.x;
+        this.game.camera.y = this.y;
     }
 }
