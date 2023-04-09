@@ -14,6 +14,9 @@ export class Player extends Circle {
         if (this.game.keysPressed['KeyA'] || this.game.keysPressed['ArrowLeft']) this.x -= speed;
         if (this.game.keysPressed['KeyS'] || this.game.keysPressed['ArrowDown']) this.y += speed;
         if (this.game.keysPressed['KeyD'] || this.game.keysPressed['ArrowRight']) this.x += speed;
+
+        this.game.camera.x = this.x;
+        this.game.camera.y = this.y;
     }
 
     applyEffects() {

@@ -22,7 +22,7 @@ export class Rectangle extends Entity {
 
     draw() {
         this.game.ctx.fillStyle = this.color;
-        this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
+        this.game.ctx.fillRect(this.game.cx(this.x), this.game.cy(this.y), this.width, this.height);
     }
 }
 
@@ -37,11 +37,11 @@ export class Circle extends Entity {
     draw() {
         this.game.ctx.fillStyle = this.color;
         this.game.ctx.beginPath();
-        this.game.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        this.game.ctx.arc(this.game.cx(this.x), this.game.cy(this.y), this.radius, 0, 2 * Math.PI);
         this.game.ctx.stroke();
 
         this.game.ctx.beginPath();
-        this.game.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        this.game.ctx.arc(this.game.cx(this.x), this.game.cy(this.y), this.radius, 0, 2 * Math.PI);
         this.game.ctx.fill();
     }
 }
