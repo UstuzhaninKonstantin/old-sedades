@@ -1,6 +1,6 @@
 import { Circle } from "../entities.js";
 
-export class EnemyEntity extends Circle {
+export class Enemy extends Circle {
     constructor(game, x, y, radius, color, speed) {
         super(game, x, y, radius, color);
         this.speed = speed;
@@ -41,7 +41,7 @@ export class EnemyEntity extends Circle {
     }
 }
 
-export class AuraEntity extends EnemyEntity {
+export class Aura extends Enemy {
     constructor(game, x, y, radius, color, speed) {
         super(game, x, y, radius, color, speed);
     }

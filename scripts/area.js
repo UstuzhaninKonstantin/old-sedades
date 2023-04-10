@@ -10,6 +10,6 @@ export class Area extends Rectangle {
     draw() {
         super.draw();
         this.game.ctx.fillStyle = this.enemiesZone.color;
-        this.game.ctx.fillRect(this.game.cx(this.enemiesZone.x), this.game.cy(this.enemiesZone.y), this.enemiesZone.width, this.enemiesZone.height);
+        this.game.ctx.fillRect(this.game.cameraX(this.enemiesZone.x), this.game.cameraY(this.enemiesZone.y), this.enemiesZone.width, this.enemiesZone.height);
     }
 }
