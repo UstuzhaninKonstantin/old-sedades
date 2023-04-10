@@ -2,7 +2,7 @@ import { Rectangle } from "./entities.js";
 
 export class Area extends Rectangle {
     constructor(game, number) {
-        const data = game.areas[number];
+        const data = game.areas[number - 1];
         super(game, data.fullZone.x, data.fullZone.y, data.fullZone.width, data.fullZone.height, data.fullZone.color);
         this.enemiesZone = data.enemiesZone;
     }
