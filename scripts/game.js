@@ -18,7 +18,7 @@ class Game {
         this.areas = [
             {
                 name: 'Area 1',
-                fullZone: {x: 0, y: 0, width: 1200, height: 600, color: '#40007F'},
+                fullZone: {x: 0, y: 0, width: 1200, height: 600, color: '#200040'},
                 enemiesZone: {x: 200, y: 0, width: 800, height: 600, color: '#000000'},
                 enemies: {
                     'BasicEnemy': {
@@ -112,11 +112,11 @@ class Game {
         return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
     }
 
-    cx(x) {
+    cameraX(x) {
         return x - this.camera.x + this.canvas.width / 2;
     }
 
-    cy(y) {
+    cameraY(y) {
         return y - this.camera.y + this.canvas.height / 2;
     }
 }

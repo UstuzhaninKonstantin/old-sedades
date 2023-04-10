@@ -1,2 +1,0 @@
-# sedades
-sedades.io!
