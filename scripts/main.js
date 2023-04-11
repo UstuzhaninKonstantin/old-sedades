@@ -8,6 +8,6 @@ game.entities.background.push(new Rectangle(game, -10000, -10000, canvas.width +
 const player = new Player(game, 50, 50, 18, 'green', 10);
 game.entities.player.push(player);
 
-game.entities.area.push(new Area(game, 1));
+game.entities.area.push(new Area(game, 3));
 
 game.start();

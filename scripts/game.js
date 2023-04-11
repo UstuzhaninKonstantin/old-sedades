@@ -20,67 +20,55 @@ class Game {
                 name: 'Area 1',
                 fullZone: {x: 0, y: 0, width: 1200, height: 600, color: '#200040'},
                 enemiesZone: {x: 200, y: 0, width: 800, height: 600, color: '#000000'},
-                enemies: {
-                    'BasicEnemy': {
+                enemies: 
+                    [{
+                        type: "BasicEnemy",
                         amount: 5,
                         speed: 5,
                         radius: 15
-                    },
-                    'RedAuraEnemy': {
-                        amount: 3,
-                        speed: 5,
-                        radius: 15
-                    },
-                    'BorderEnemy': {
-                        amount: 1,
-                        speed: 5,
-                        radius: 15
-                    }
-                }
+                    }]
             },
             {
                 name: 'Area 2',
                 fullZone: {x: 0, y: 0, width: 1200, height: 600, color: '#40007F'},
                 enemiesZone: {x: 200, y: 0, width: 800, height: 600, color: '#000000'},
-                enemies: {
-                    'BasicEnemy': {
-                        amount: 8,
-                        speed: 5,
-                        radius: 15
-                    },
-                    'RedAuraEnemy': {
-                        amount: 4,
-                        speed: 5,
-                        radius: 15
-                    },
-                    'BorderEnemy': {
-                        amount: 1,
-                        speed: 5,
-                        radius: 15
-                    }
-                }
-            },
-            {
-                name: 'Area 3',
-                fullZone: {x: 0, y: 0, width: 1200, height: 600, color: '#40007F'},
-                enemiesZone: {x: 200, y: 10, width: 800, height: 600, color: '#000000'},
-                enemies: {
-                    'BasicEnemy': {
-                        amount: 10,
-                        speed: 5,
-                        radius: 15
-                    },
-                    'RedAuraEnemy': {
+                enemies: 
+                    [{
+                        type: "BasicEnemy",
                         amount: 5,
                         speed: 5,
                         radius: 15
                     },
-                    'BorderEnemy': {
+                    {
+                        type: "RedAuraEnemy",
+                        amount: 3,
+                        speed: 5,
+                        radius: 15
+                    }]
+            },
+            {
+                name: 'Area 3',
+                fullZone: {x: 0, y: 0, width: 1200, height: 600, color: '#40007F'},
+                enemiesZone: {x: 200, y: 0, width: 800, height: 600, color: '#000000'},
+                enemies: 
+                    [{
+                        type: "BasicEnemy",
+                        amount: 5,
+                        speed: 5,
+                        radius: 15
+                    },
+                    {
+                        type: "RedAuraEnemy",
+                        amount: 3,
+                        speed: 5,
+                        radius: 15
+                    },
+                    {
+                        type: "BorderEnemy",
                         amount: 1,
                         speed: 5,
                         radius: 15
-                    }
-                }
+                    }]
             }
         ];
     }

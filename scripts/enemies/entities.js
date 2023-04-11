@@ -15,22 +15,22 @@ export class Enemy extends Circle {
     }
   
     wallCollision() {
-        if (!this.game.area) return;
+        if (!this.game.entities.area[0]) return;
         
-        if (this.x - this.r < this.game.area.enemiesZone.x) {
-            this.x = this.game.area.enemiesZone.x + this.r;
+        if (this.x - this.radius < this.game.entities.area[0].enemiesZone.x) {
+            this.x = this.game.entities.area[0].enemiesZone.x + this.radius;
             this.velocityX *= -1;
         }
-        if (this.x + this.r > this.game.area.enemiesZone.x + this.game.area.enemiesZone.w) {
-            this.x = this.game.area.enemiesZone.x + this.game.area.enemiesZone.w - this.r;
+        if (this.x + this.radius > this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.width) {
+            this.x = this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.width - this.radius;
             this.velocityX *= -1;
         }
-        if (this.y - this.r < this.game.area.enemiesZone.y) {
-            this.y = this.game.area.enemiesZone.y + this.r;
+        if (this.y - this.radius < this.game.entities.area[0].enemiesZone.y) {
+            this.y = this.game.entities.area[0].enemiesZone.y + this.radius;
             this.velocityY *= -1;
         }
-        if (this.y + this.r > this.game.area.enemiesZone.y + this.game.area.enemiesZone.h) {
-            this.y = this.game.area.enemiesZone.y + this.game.area.enemiesZone.h - this.r;
+        if (this.y + this.radius > this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.height) {
+            this.y = this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.height - this.radius;
             this.velocityY *= -1;
         }
     }
@@ -47,22 +47,22 @@ export class Aura extends Enemy {
     }
     
     wallCollision() {
-        if (!this.game.area) return;
+        if (!this.game.entities.area[0]) return;
         
-        if (this.x < this.game.area.enemiesZone.x) {
-            this.x = this.game.area.enemiesZone.x;
+        if (this.x < this.game.entities.area[0].enemiesZone.x) {
+            this.x = this.game.entities.area[0].enemiesZone.x;
             this.velocityX *= -1;
         }
-        if (this.x > this.game.area.enemiesZone.x + this.game.area.enemiesZone.width) {
-            this.x = this.game.area.enemiesZone.x + this.game.area.enemiesZone.width;
+        if (this.x > this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.width) {
+            this.x = this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.width;
             this.velocityX *= -1;
         }
-        if (this.y < this.game.area.enemiesZone.y) {
-            this.y = this.game.area.enemiesZone.y;
+        if (this.y < this.game.entities.area[0].enemiesZone.y) {
+            this.y = this.game.entities.area[0].enemiesZone.y;
             this.velocityY *= -1;
         }
-        if (this.y > this.game.area.enemiesZone.y + this.game.area.enemiesZone.height) {
-            this.y = this.game.area.enemiesZone.y + this.game.area.enemiesZone.height;
+        if (this.y > this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.height) {
+            this.y = this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.height;
             this.velocityY *= -1;
         }
     }

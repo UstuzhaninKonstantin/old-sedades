@@ -1,3 +1,3 @@
-import { EnemyEntity } from "./entities.js";
+import { Enemy } from "./entities.js";
 
-export class BasicEnemy extends EnemyEntity {}
+export class BasicEnemy extends Enemy {}
