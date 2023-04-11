@@ -18,59 +18,32 @@ class Game {
         this.areas = [
             {
                 name: 'Area 1',
-                fullZone: {x: 0, y: 0, w: 1200, h: 600, c: '#200040'},
-                enemiesZone: {x: 200, y: 0, w: 800, h: 600, c: '#000000'},
-                enemies: 
-                    [{
-                        type: "BasicEnemy",
-                        amount: 5,
-                        speed: 5,
-                        r: 15
-                    }]
-            },
-            {
-                name: 'Area 2',
-                fullZone: {x: 0, y: 0, w: 1200, h: 600, c: '#40007F'},
-                enemiesZone: {x: 200, y: 0, w: 800, h: 600, c: '#000000'},
-                enemies: 
-                    [{
-                        type: "BasicEnemy",
-                        amount: 5,
-                        speed: 5,
-                        r: 15
-                    },
+                fullZone: {x: 0, y: 0, w: 3000, h: 600, c: '#200040'},
+                enemiesZone: {x: 200, y: 0, w: 2600, h: 600, c: '#000000'},
+                enemies: [
                     {
-                        type: "RedAuraEnemy",
-                        amount: 3,
-                        speed: 5,
-                        r: 15
-                    }]
-            },
-            {
-                name: 'Area 3',
-                fullZone: {x: 0, y: 0, w: 1200, h: 600, c: '#40007F'},
-                enemiesZone: {x: 200, y: 0, w: 800, h: 600, c: '#000000'},
-                enemies: 
-                    [{
                         type: "BasicEnemy",
-                        amount: 5,
-                        speed: 5,
-                        r: 15
+                        amount: 15,
+                        speed: 7,
+                        r: 18
                     },
-                    {
-                        type: "RedAuraEnemy",
-                        amount: 3,
-                        speed: 5,
-                        r: 15
-                    },
+
                     {
                         type: "BorderEnemy",
-                        amount: 1,
+                        amount: 3,
                         speed: 5,
-                        r: 15
-                    }]
+                        r: 18
+                    },
+
+                    {
+                        type: "RedAuraEnemy",
+                        amount: 8,
+                        speed: 5,
+                        r: 85
+                    }
+                ]
             }
-        ];
+        ]
     }
 
     start() {
