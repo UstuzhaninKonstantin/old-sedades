@@ -13,31 +13,31 @@ export class Entity {
 
 
 export class Rectangle extends Entity {
-    constructor(game, x, y, width, height, color) {
+    constructor(game, x, y, w, h, c) {
         super(game, x, y);
-        this.width = width;
-        this.height = height;
-        this.color = color;
+        this.w = w;
+        this.h = h;
+        this.c = c;
     }
 
     draw() {
-        this.game.ctx.fillStyle = this.color;
-        this.game.ctx.fillRect(this.game.cameraX(this.x), this.game.cameraY(this.y), this.width, this.height);
+        this.game.ctx.fillStyle = this.c;
+        this.game.ctx.fillRect(this.game.cameraX(this.x), this.game.cameraY(this.y), this.w, this.h);
     }
 }
 
 
 export class Circle extends Entity {
-    constructor(game, x, y, radius, color) {
+    constructor(game, x, y, r, c) {
         super(game, x, y);
-        this.radius = radius;
-        this.color = color;
+        this.r = r;
+        this.c = c;
     }
 
     draw() {
-        this.game.ctx.fillStyle = this.color;
+        this.game.ctx.fillStyle = this.c;
         this.game.ctx.beginPath();
-        this.game.ctx.arc(this.game.cameraX(this.x), this.game.cameraY(this.y), this.radius, 0, 2 * Math.PI);
+        this.game.ctx.arc(this.game.cameraX(this.x), this.game.cameraY(this.y), this.r, 0, 2 * Math.PI);
         this.game.ctx.fill();
     }
 }

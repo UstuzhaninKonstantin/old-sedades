@@ -1,8 +1,8 @@
 import { Circle } from "../entities.js";
 
 export class Enemy extends Circle {
-    constructor(game, x, y, radius, color, speed) {
-        super(game, x, y, radius, color);
+    constructor(game, x, y, r, c, speed) {
+        super(game, x, y, r, c);
         this.speed = speed;
         this.angle = Math.random() * 2 * Math.PI;
         this.velocityX = Math.cos(this.angle);
@@ -17,20 +17,20 @@ export class Enemy extends Circle {
     wallCollision() {
         if (!this.game.entities.area[0]) return;
         
-        if (this.x - this.radius < this.game.entities.area[0].enemiesZone.x) {
-            this.x = this.game.entities.area[0].enemiesZone.x + this.radius;
+        if (this.x - this.r < this.game.entities.area[0].enemiesZone.x) {
+            this.x = this.game.entities.area[0].enemiesZone.x + this.r;
             this.velocityX *= -1;
         }
-        if (this.x + this.radius > this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.width) {
-            this.x = this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.width - this.radius;
+        if (this.x + this.r > this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.w) {
+            this.x = this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.w - this.r;
             this.velocityX *= -1;
         }
-        if (this.y - this.radius < this.game.entities.area[0].enemiesZone.y) {
-            this.y = this.game.entities.area[0].enemiesZone.y + this.radius;
+        if (this.y - this.r < this.game.entities.area[0].enemiesZone.y) {
+            this.y = this.game.entities.area[0].enemiesZone.y + this.r;
             this.velocityY *= -1;
         }
-        if (this.y + this.radius > this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.height) {
-            this.y = this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.height - this.radius;
+        if (this.y + this.r > this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.h) {
+            this.y = this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.h - this.r;
             this.velocityY *= -1;
         }
     }
@@ -42,8 +42,8 @@ export class Enemy extends Circle {
 }
 
 export class Aura extends Enemy {
-    constructor(game, x, y, radius, color, speed) {
-        super(game, x, y, radius, color, speed);
+    constructor(game, x, y, r, c, speed) {
+        super(game, x, y, r, c, speed);
     }
     
     wallCollision() {
@@ -53,16 +53,16 @@ export class Aura extends Enemy {
             this.x = this.game.entities.area[0].enemiesZone.x;
             this.velocityX *= -1;
         }
-        if (this.x > this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.width) {
-            this.x = this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.width;
+        if (this.x > this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.w) {
+            this.x = this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.w;
             this.velocityX *= -1;
         }
         if (this.y < this.game.entities.area[0].enemiesZone.y) {
             this.y = this.game.entities.area[0].enemiesZone.y;
             this.velocityY *= -1;
         }
-        if (this.y > this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.height) {
-            this.y = this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.height;
+        if (this.y > this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.h) {
+            this.y = this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.h;
             this.velocityY *= -1;
         }
     }

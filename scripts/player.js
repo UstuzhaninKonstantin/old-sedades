@@ -1,8 +1,8 @@
 import { Circle } from "./entities.js";
 
 export class Player extends Circle {
-    constructor(game, x, y, radius, color, speed) {
-        super(game, x, y, radius, color);
+    constructor(game, x, y, r, c, speed) {
+        super(game, x, y, r, c);
         this.speed = speed;
         this.effects = [];
     }
@@ -12,10 +12,10 @@ export class Player extends Circle {
         if (!area) return;
         console.log(area);
       
-        if (this.x - this.radius < area.x) this.x = area.x + this.radius;
-        if (this.x + this.radius > area.x + area.width) this.x = area.x + area.width - this.radius;
-        if (this.y - this.radius < area.y) this.y = area.y + this.radius;
-        if (this.y + this.radius > area.y + area.height) this.y = area.y + area.height - this.radius;
+        if (this.x - this.r < area.x) this.x = area.x + this.r;
+        if (this.x + this.r > area.x + area.w) this.x = area.x + area.w - this.r;
+        if (this.y - this.r < area.y) this.y = area.y + this.r;
+        if (this.y + this.r > area.y + area.h) this.y = area.y + area.h - this.r;
       }
 
     move() {
