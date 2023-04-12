@@ -37,7 +37,7 @@ export class Enemy extends Circle {
     
     playerCollision() {
         const player = this.game.entities.player[0];
-
+        if (!player.isAlive) return;
         if ((Math.sqrt((this.x - player.x) ** 2 + (this.y - player.y) ** 2)) < (this.r + player.r)) {
             this.playerInteraction(player);
         }
@@ -79,6 +79,8 @@ export class Aura extends Enemy {
             this.velocityY *= -1;
         }
     }
+
+    playerInteraction(player) {}
     
     draw() {
         this.game.ctx.globalAlpha = 0.3;

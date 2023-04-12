@@ -4,7 +4,7 @@ export class Player extends Circle {
     constructor(game, x, y, r, c, speed) {
         super(game, x, y, r, c);
         this.speed = speed;
-        this.effects = [];
+        this.effects = {};
         this.isAlive = true;
     }
 
@@ -30,7 +30,10 @@ export class Player extends Circle {
     applyEffects() {
         let speed = this.speed;
         if (this.game.keysPressed['ShiftLeft'] || this.game.keysPressed['ShiftRight']) speed /= 2;
-        if ('redAura' in this.effects) speed -= this.speed * 0.3; 
+        if (this.effects.redAura) {
+            speed -= this.speed * 0.3; 
+        }
+        this.effects = [];
         return speed;
     }
 
