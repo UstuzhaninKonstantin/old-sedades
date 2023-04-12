@@ -15,11 +15,20 @@ class Game {
         this.keysPressed = {};
         this.camera = {x: 0, y: 0};
         this.createObjects = null;
+        const ceil = new Image(20, 20);
+        ceil.src = '../../assets/cell.png';
+        ceil.onload = () => {
+            this.pattern = this.ctx.createPattern(ceil, "repeat");
+        }
     }
 
     start() {
         setInterval(() => {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.pattern.setTransform({
+                e: this.canvas.width / 2 - this.camera.x,
+                f: this.canvas.height / 2 - this.camera.y,
+            });
             for (const key of Object.keys(this.entities)) {
                 for (const entity of this.entities[key]) {
                     entity.update();

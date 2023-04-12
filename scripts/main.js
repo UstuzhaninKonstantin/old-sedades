@@ -8,7 +8,7 @@ function createObjects() {
     const player = new Player(game, 50, 50, 18, 'cyan', 8);
     game.entities.player.push(player);
 
-    game.entities.area.push(new Area(game, 1));
+    game.entities.area. push(new Area(game, 1));
 }
 game.createObjects = createObjects;
 createObjects();
