@@ -69,7 +69,7 @@ export const areas = [
 
             {
                 type: "BorderEnemy",
-                amount: 1,
+                amount: 2,
                 speed: 5,
                 r: 18
             },
