@@ -10,7 +10,6 @@ export class Player extends Circle {
     wallCollision() {
         const area = this.game.entities.area[0];
         if (!area) return;
-        console.log(area);
       
         if (this.x - this.r < area.x) this.x = area.x + this.r;
         if (this.x + this.r > area.x + area.w) this.x = area.x + area.w - this.r;
