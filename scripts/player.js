@@ -56,7 +56,11 @@ export class Player extends Circle {
     }
 
     draw() {
+        if (!this.isAlive) {
+            this.game.drawText('R to respawn.', this.game.cameraX(this.x), this.game.cameraY(this.y) - this.r - 20, 'red');
+            this.game.ctx.globalAlpha = 0.5;
+        }
         super.draw();
-        if (!this.isAlive) this.game.drawText('R to respawn.', this.game.cameraX(this.x), this.game.cameraY(this.y) - this.r - 20);
+        this.game.ctx.globalAlpha = 1;
     }
 }

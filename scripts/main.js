@@ -1,4 +1,4 @@
-import { Area } from "./area.js";
+import { Area } from "./area/area.js";
 import { Rectangle } from "./entities.js";
 import { game } from "./game.js";
 import { Player } from "./player.js";

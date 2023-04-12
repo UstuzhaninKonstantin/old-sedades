@@ -1,14 +1,27 @@
-import { Rectangle } from "./entities.js";
-import { BasicEnemy } from "./enemies/BasicEnemy.js";
-import { RedAuraEnemy } from "./enemies/RedAuraEnemy.js";
-import { BorderEnemy } from "./enemies/BorderEnemy.js";
+import { areas } from "./areas.js";
+import { Rectangle } from "../entities.js";
+import { BasicEnemy } from "../enemies/BasicEnemy.js";
+import { RedAuraEnemy } from "../enemies/RedAuraEnemy.js";
+import { BorderEnemy } from "../enemies/BorderEnemy.js";
+import { Portal } from "./portal.js";
 
 export class Area extends Rectangle {
     constructor(game, number) {
-        const data = game.areas[number - 1];
+        console.log(areas[number - 1]);
+        const data = areas[number - 1];
         super(game, data.fullZone.x, data.fullZone.y, data.fullZone.w, data.fullZone.h, data.fullZone.c);
         this.enemiesZone = data.enemiesZone;
         this.createEnemies(data.enemies);
+        if (number !== 1) {
+            this.game.entities.portals.push(
+                new Portal(this.game, data.fullZone.x, data.fullZone.y, 20, data.fullZone.h, 'yellow', number - 1, data.fullZone.x + data.fullZone.w - 50)
+            );
+        }
+        if (number !== areas.length) {
+            this.game.entities.portals.push(
+                new Portal(this.game, data.fullZone.x + data.fullZone.w - 20, data.fullZone.y, 20, data.fullZone.h, 'yellow', number + 1, data.fullZone.x + 50)
+            );
+        }
     }
 
     createEnemies(enemies) {
