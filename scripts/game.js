@@ -4,7 +4,6 @@ class Game {
         this.ctx = this.canvas.getContext('2d');
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
-
         this.fps = 60;
         this.entities = {
             background: [],
@@ -14,6 +13,7 @@ class Game {
         };
         this.keysPressed = {};
         this.camera = {x: 0, y: 0};
+        this.createObjects = null;
         
         this.areas = [
             {
@@ -73,12 +73,29 @@ class Game {
         return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
     }
 
+    drawText(text, x, y, c) {
+        this.ctx.font = '20px serif';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillStyle = c;
+        this.ctx.fillText(text, x, y);
+    }
+
     cameraX(x) {
         return x - this.camera.x + this.canvas.width / 2;
     }
 
     cameraY(y) {
         return y - this.camera.y + this.canvas.height / 2;
+    }
+
+    reset() {
+        this.entities = {
+            background: [],
+            area: [],
+            enemies: [],
+            player: [],
+        };
+        this.createObjects();
     }
 }
 

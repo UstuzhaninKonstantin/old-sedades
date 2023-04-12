@@ -5,6 +5,7 @@ export class Player extends Circle {
         super(game, x, y, r, c);
         this.speed = speed;
         this.effects = [];
+        this.isAlive = true;
     }
 
     wallCollision() {
@@ -34,9 +35,25 @@ export class Player extends Circle {
     }
 
     update() {
-        this.move();
-        this.wallCollision();
-        this.game.camera.x = this.x;
-        this.game.camera.y = this.y;
+        if (this.isAlive) {
+            this.move();
+            this.wallCollision();
+            this.game.camera.x = this.x;
+            this.game.camera.y = this.y;
+        }
+        else {
+            this.handleRespawn();
+        }
+    }
+
+    handleRespawn() {
+        if (this.game.keysPressed['KeyR']) {
+            this.game.reset();
+        }
+    }
+
+    draw() {
+        super.draw();
+        if (!this.isAlive) this.game.drawText('R to respawn.', this.game.cameraX(this.x), this.game.cameraY(this.y) - this.r - 20);
     }
 }

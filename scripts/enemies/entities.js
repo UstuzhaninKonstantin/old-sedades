@@ -39,12 +39,12 @@ export class Enemy extends Circle {
         const player = this.game.entities.player[0];
 
         if ((Math.sqrt((this.x - player.x) ** 2 + (this.y - player.y) ** 2)) < (this.r + player.r)) {
-            this.playerInteraction();
+            this.playerInteraction(player);
         }
     }
 
-    playerInteraction() {
-        console.log('hit');
+    playerInteraction(player) {
+        player.isAlive = false;
     }
 
     update() {
