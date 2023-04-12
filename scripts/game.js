@@ -9,41 +9,12 @@ class Game {
             background: [],
             area: [],
             enemies: [],
+            portals: [],
             player: [],
         };
         this.keysPressed = {};
         this.camera = {x: 0, y: 0};
         this.createObjects = null;
-        
-        this.areas = [
-            {
-                name: 'Area 1',
-                fullZone: {x: 0, y: 0, w: 3000, h: 600, c: '#200040'},
-                enemiesZone: {x: 200, y: 0, w: 2600, h: 600, c: '#000000'},
-                enemies: [
-                    {
-                        type: "BasicEnemy",
-                        amount: 15,
-                        speed: 7,
-                        r: 18
-                    },
-
-                    {
-                        type: "BorderEnemy",
-                        amount: 3,
-                        speed: 5,
-                        r: 18
-                    },
-
-                    {
-                        type: "RedAuraEnemy",
-                        amount: 8,
-                        speed: 5,
-                        r: 85
-                    }
-                ]
-            }
-        ]
     }
 
     start() {
@@ -93,9 +64,25 @@ class Game {
             background: [],
             area: [],
             enemies: [],
+            portals: [],
             player: [],
         };
         this.createObjects();
+    }
+
+    rectCircleCollision(rect, circle) {
+        const distX = Math.abs(circle.x - rect.x - rect.w / 2);
+        const distY = Math.abs(circle.y - rect.y - rect.h / 2);
+
+        if (distX > (rect.w / 2 + circle.r)) return false; 
+        if (distY > (rect.h / 2 + circle.r)) return false;
+
+        if (distX <= (rect.w / 2)) return true;
+        if (distY <= (rect.h / 2)) return true;
+
+        const dx = distX - rect.w / 2;
+        const dy = distY - rect.h / 2;
+        return dx * dx + dy * dy <= (circle.r * circle.r);
     }
 }
 
