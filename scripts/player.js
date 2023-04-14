@@ -1,11 +1,12 @@
 import { Circle } from "./entities.js";
 
 export class Player extends Circle {
-    constructor(game, x, y, r, c, speed) {
+    constructor(game, x, y, r, c, speed, name) {
         super(game, x, y, r, c);
         this.speed = speed;
         this.effects = {};
         this.isAlive = true;
+        this.name = name;
     }
 
     wallCollision() {
@@ -33,7 +34,7 @@ export class Player extends Circle {
         if (this.effects.redAura) {
             speed -= this.speed * 0.3; 
         }
-        this.effects = [];
+        this.effects = {};
         return speed;
     }
 
@@ -57,10 +58,11 @@ export class Player extends Circle {
 
     draw() {
         if (!this.isAlive) {
-            this.game.drawText('R to respawn.', this.game.cameraX(this.x), this.game.cameraY(this.y) - this.r - 20, 'red');
+            this.game.drawText('R to respawn.', this.game.cameraX(this.x), this.game.cameraY(this.y + this.r + 20), 'red');
             this.game.ctx.globalAlpha = 0.5;
         }
         super.draw();
+        this.game.drawText(this.name, this.game.cameraX(this.x), this.game.cameraY(this.y - this.r - 10), 'yellow');
         this.game.ctx.globalAlpha = 1;
     }
 }

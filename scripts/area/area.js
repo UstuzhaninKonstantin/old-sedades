@@ -7,7 +7,6 @@ import { Portal } from "./portal.js";
 
 export class Area extends Rectangle {
     constructor(game, number) {
-        console.log(areas[number - 1]);
         const data = areas[number - 1];
         super(game, data.fullZone.x, data.fullZone.y, data.fullZone.w, data.fullZone.h, data.fullZone.c);
         this.enemiesZone = data.enemiesZone;
