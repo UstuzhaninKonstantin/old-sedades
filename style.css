@@ -1,8 +1,59 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
+
+html, body {
     margin: 0;
     overflow: hidden;
+    font-family: 'Roboto', sans-serif;
 }
 
-canvas {
+#canvas {
     display: none;
+}
+
+#menu {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: blueviolet;
+}
+
+.caption {
+    font-size: 100px;
+    color: rgb(41, 13, 77)
+}
+
+#nameInput {
+    height: 50px;
+    width: 300px;
+    font-size: 30px;
+    color: white;
+    background-color: rgb(41, 13, 77);
+    border: 2px solid black;
+    border-radius: 6px;
+}
+
+#label {
+    font-size: 30px;
+}
+
+#button {
+    background-color: #4927c2;
+    border-radius: 8px;
+    border-style: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 500;
+    height: 80px;
+    width: 200px;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+}
+  
+#button:hover,
+#button:focus {
+  background-color: rgb(41, 13, 77);
 }

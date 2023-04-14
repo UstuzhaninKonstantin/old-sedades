@@ -16,7 +16,8 @@ class Game {
         this.camera = {x: 0, y: 0};
         this.createObjects = null;
         const ceil = new Image(20, 20);
-        ceil.src = '../../assets/cell.png';
+        if (window.location.href === 'http://127.0.0.1:5500/') ceil.src = '../../assets/cell.png';
+        else ceil.src = '../cell.png';
         ceil.onload = () => {
             this.pattern = this.ctx.createPattern(ceil, "repeat");
         }
