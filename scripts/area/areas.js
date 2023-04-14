@@ -5,6 +5,13 @@ export const areas = [
         enemiesZone: {x: 200, y: 0, w: 600, h: 600, c: '#000000'},
         enemies: [
             {
+                type: "BasicEnemy",
+                amount: 5,
+                speed: 7,
+                r: 18
+            },
+
+            {
                 type: "DasherEnemy",
                 amount: 5,
                 speed: 7,
@@ -40,6 +47,13 @@ export const areas = [
             },
 
             {
+                type: "BasicEnemy",
+                amount: 5,
+                speed: 7,
+                r: 18
+            },
+
+            {
                 type: "BorderEnemy",
                 amount: 1,
                 speed: 5,
@@ -62,6 +76,13 @@ export const areas = [
         enemies: [
             {
                 type: "DasherEnemy",
+                amount: 10,
+                speed: 7,
+                r: 18
+            },
+
+            {
+                type: "BasicEnemy",
                 amount: 10,
                 speed: 7,
                 r: 18
