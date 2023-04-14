@@ -3,7 +3,7 @@ import { Enemy } from "./entities.js";
 export class DasherEnemy extends Enemy {
     constructor(game, x, y, r, c, speed) {
         super(game, x, y, r, c, speed);
-        this.speedMultiplier = 2;
+        this.speedMultiplier = 2.5;
         this.speedNow = this.speed * this.speedMultiplier;
     }
 
@@ -11,7 +11,7 @@ export class DasherEnemy extends Enemy {
         if (this.speedMultiplier > 0.1) {
             this.speedMultiplier /= 1.1;
         } else {
-            this.speedMultiplier = 2;
+            this.speedMultiplier = 2.5;
         }
 
         this.speedNow = this.speed * this.speedMultiplier;
