@@ -25,10 +25,12 @@ class Game {
     start() {
         setInterval(() => {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            this.pattern.setTransform({
-                e: this.canvas.width / 2 - this.camera.x,
-                f: this.canvas.height / 2 - this.camera.y,
-            });
+            if (this.pattern) {
+                this.pattern.setTransform({
+                    e: this.canvas.width / 2 - this.camera.x,
+                    f: this.canvas.height / 2 - this.camera.y,
+                });
+            }
             for (const key of Object.keys(this.entities)) {
                 for (const entity of this.entities[key]) {
                     entity.update();
