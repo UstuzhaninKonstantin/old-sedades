@@ -15,6 +15,7 @@ class Game {
         this.keysPressed = {};
         this.camera = {x: 0, y: 0};
         this.createObjects = null;
+
         const ceil = new Image(20, 20);
         ceil.src = '../../assets/cell.png';
         ceil.onload = () => {
