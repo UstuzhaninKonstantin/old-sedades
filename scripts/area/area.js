@@ -22,13 +22,6 @@ export class Area extends Rectangle {
                 new Portal(this.game, data.fullZone.x + data.fullZone.w - 20, data.fullZone.y, 20, data.fullZone.h, 'yellow', number + 1, data.fullZone.x + 50)
             );
         }
-        this.cell = new Image(20, 20);
-        this.cell.src = '../../assets/cell.png';
-        this.cell.onload = () => {
-            const pattern = this.game.ctx.createPattern(this.cell, "repeat");
-            this.game.ctx.fillStyle = pattern;
-            this.game.ctx.fillRect(this.enemiesZone.x, this.enemiesZone.y, this.enemiesZone.w, this.enemiesZone.h);
-        }
     }
 
     createEnemies(enemies) {
