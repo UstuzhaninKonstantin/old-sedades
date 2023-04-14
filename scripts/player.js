@@ -62,7 +62,7 @@ export class Player extends Circle {
             this.game.ctx.globalAlpha = 0.5;
         }
         super.draw();
-        this.game.drawText(this.name, this.game.cameraX(this.x), this.game.cameraY(this.y - this.r - 10), 'yellow');
+        this.game.drawText(this.name, this.game.cameraX(this.x), this.game.cameraY(this.y - this.r - 10), 'cyan');
         this.game.ctx.globalAlpha = 1;
     }
 }

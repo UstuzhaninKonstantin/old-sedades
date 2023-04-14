@@ -1,8 +1,12 @@
 import { areas } from "./areas.js";
+
 import { Rectangle } from "../entities.js";
+
 import { BasicEnemy } from "../enemies/BasicEnemy.js";
-import { RedAuraEnemy } from "../enemies/RedAuraEnemy.js";
 import { BorderEnemy } from "../enemies/BorderEnemy.js";
+import { RedAuraEnemy } from "../enemies/RedAuraEnemy.js";
+import { DasherEnemy } from "../enemies/DasherEnemy.js";
+
 import { Portal } from "./portal.js";
 
 export class Area extends Rectangle {
@@ -47,6 +51,10 @@ export class Area extends Rectangle {
 
                     case 'RedAuraEnemy':
                         this.game.entities.enemies.push(new RedAuraEnemy(this.game, randomX, randomY, dataSet.r, 'red', dataSet.speed, 0.3));
+                    break;
+
+                    case 'DasherEnemy':
+                        this.game.entities.enemies.push(new DasherEnemy(this.game, randomX, randomY, dataSet.r, 'blue', dataSet.speed));
                     break;
                 }
             }
