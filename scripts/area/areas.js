@@ -25,6 +25,17 @@ export const areas = [
                 r: 85
             }
         ],
+        portals: [
+            {
+                x: 950,
+                y: 0,
+                w: 50,
+                h: 600,
+                c: 'yellow',
+                teleportsTo: 2,
+                playerX: 100
+            }
+        ]
     },
     
     {
@@ -51,6 +62,27 @@ export const areas = [
                 amount: 5,
                 speed: 5,
                 r: 85
+            }
+        ],
+        portals: [
+            {
+                x: 0,
+                y: 0,
+                w: 50,
+                h: 600,
+                c: 'yellow',
+                teleportsTo: 1,
+                playerX: 900 
+            },
+
+            {
+                x: 950,
+                y: 0,
+                w: 50,
+                h: 600,
+                c: 'yellow',
+                teleportsTo: 3,
+                playerX: 100
             }
         ]
     },
@@ -80,6 +112,17 @@ export const areas = [
                 speed: 5,
                 r: 85
             }
+        ],
+        portals: [
+            {
+                x: 0,
+                y: 0,
+                w: 50,
+                h: 600,
+                c: 'yellow',
+                teleportsTo: 2,
+                playerX: 900
+            },
         ]
     }
 ]
