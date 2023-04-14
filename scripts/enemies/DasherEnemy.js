@@ -9,7 +9,7 @@ export class DasherEnemy extends Enemy {
 
     speedChange() {
         if (this.speedMultiplier > 0.1) {
-            this.speedMultiplier -= 0.1;
+            this.speedMultiplier /= 1.1;
         } else {
             this.speedMultiplier = 2;
         }
