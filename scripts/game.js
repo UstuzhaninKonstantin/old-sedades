@@ -84,12 +84,6 @@ class Game {
         this.entities.area.push(new Area(game, 1));
     }
 
-    getRandomNumber(minimum, maximum) {
-        minimum = Math.ceil(minimum);
-        maximum = Math.floor(maximum);
-        return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
-    }
-
     drawText(text, x, y, c) {
         this.ctx.font = '20px serif';
         this.ctx.textAlign = 'center';
@@ -114,21 +108,6 @@ class Game {
             player: [],
         };
         this.createObjects();
-    }
-
-    rectCircleCollision(rect, circle) {
-        const distX = Math.abs(circle.x - rect.x - rect.w / 2);
-        const distY = Math.abs(circle.y - rect.y - rect.h / 2);
-
-        if (distX > (rect.w / 2 + circle.r)) return false; 
-        if (distY > (rect.h / 2 + circle.r)) return false;
-
-        if (distX <= (rect.w / 2)) return true;
-        if (distY <= (rect.h / 2)) return true;
-
-        const dx = distX - rect.w / 2;
-        const dy = distY - rect.h / 2;
-        return dx * dx + dy * dy <= (circle.r * circle.r);
     }
 }
 

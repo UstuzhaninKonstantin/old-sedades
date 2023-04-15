@@ -1,5 +1,6 @@
 import { Rectangle } from "../entities.js";
 import { Area } from "./area.js";
+import { rectCircleCollision } from "../utils.js";
 
 export class Portal extends Rectangle {
     constructor(game, x, y, w, h, c, teleportsTo, playerX) {
@@ -15,7 +16,7 @@ export class Portal extends Rectangle {
     playerCollision() {
         const player = this.game.entities.player[0];
 
-        if (this.game.rectCircleCollision(this, player)) {
+        if (rectCircleCollision(this, player)) {
             this.game.entities.enemies = [];
             this.game.entities.portals = [];
             player.x = this.playerX;

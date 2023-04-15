@@ -10,6 +10,8 @@ import { ResizingEnemy } from "../enemies/ResizingEnemy.js";
 
 import { Portal } from "./portal.js";
 
+import { randomInt } from "../utils.js";
+
 export class Area extends Rectangle {
     constructor(game, number) {
         const data = areas[number - 1];
@@ -23,8 +25,8 @@ export class Area extends Rectangle {
         for (const dataSet of enemies) {
 
             for (let i = 0; i < dataSet.amount; i++) {
-                const randomX = this.game.getRandomNumber(this.enemiesZone.x, this.enemiesZone.x + this.enemiesZone.w);
-                const randomY  = this.game.getRandomNumber(this.enemiesZone.y, this.enemiesZone.y + this.enemiesZone.h);
+                const randomX = randomInt(this.enemiesZone.x, this.enemiesZone.x + this.enemiesZone.w);
+                const randomY  = randomInt(this.enemiesZone.y, this.enemiesZone.y + this.enemiesZone.h);
 
                 switch (dataSet.type) {
                     case 'BasicEnemy':
@@ -32,7 +34,7 @@ export class Area extends Rectangle {
                     break;
 
                     case 'BorderEnemy':
-                        const velocity = this.game.getRandomNumber(1, 2) === 1 ? 1 : -1;
+                        const velocity = randomInt(1, 2) === 1 ? 1 : -1;
                         this.game.entities.enemies.push(new BorderEnemy(
                             this.game, randomX, this.enemiesZone.y + dataSet.r, dataSet.r, 'grey', dataSet.speed, velocity
                         ));
