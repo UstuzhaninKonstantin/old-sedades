@@ -34,10 +34,10 @@ export class Circle extends Entity {
         this.c = c;
     }
 
-    draw() {
+    draw(r = this.r) {
         this.game.ctx.fillStyle = this.c;
         this.game.ctx.beginPath();
-        this.game.ctx.arc(this.game.cameraX(this.x), this.game.cameraY(this.y), this.r, 0, 2 * Math.PI);
+        this.game.ctx.arc(this.game.cameraX(this.x), this.game.cameraY(this.y), r, 0, 2 * Math.PI);
         this.game.ctx.fill();
     }
 }

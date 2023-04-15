@@ -19,7 +19,6 @@ export class DasherEnemy extends Enemy {
     
     move() {
         this.speedChange();
-        this.x += this.velocityX * this.speedNow;
-        this.y += this.velocityY * this.speedNow;
+        super.move(this.speedNow);
     }
 }

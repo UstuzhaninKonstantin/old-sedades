@@ -5,7 +5,7 @@ export const areas = [
         enemiesZone: {x: 200, y: 0, w: 600, h: 600, c: '#000000'},
         enemies: [
             {
-                type: "BasicEnemy",
+                type: "ResizingEnemy",
                 amount: 5,
                 speed: 7,
                 r: 18

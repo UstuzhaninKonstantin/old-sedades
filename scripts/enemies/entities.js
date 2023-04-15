@@ -9,36 +9,36 @@ export class Enemy extends Circle {
         this.velocityY = Math.sin(this.angle);
     }  
   
-    move() {
-        this.x += this.velocityX * this.speed;
-        this.y += this.velocityY * this.speed;
+    move(speed = this.speed) {
+        this.x += this.velocityX * speed;
+        this.y += this.velocityY * speed;
     }
   
-    wallCollision() {
+    wallCollision(r = this.r) {
         if (!this.game.entities.area[0]) return;
         
-        if (this.x - this.r < this.game.entities.area[0].enemiesZone.x) {
-            this.x = this.game.entities.area[0].enemiesZone.x + this.r;
+        if (this.x - r < this.game.entities.area[0].enemiesZone.x) {
+            this.x = this.game.entities.area[0].enemiesZone.x + r;
             this.velocityX *= -1;
         }
-        if (this.x + this.r > this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.w) {
-            this.x = this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.w - this.r;
+        if (this.x + r > this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.w) {
+            this.x = this.game.entities.area[0].enemiesZone.x + this.game.entities.area[0].enemiesZone.w - r;
             this.velocityX *= -1;
         }
-        if (this.y - this.r < this.game.entities.area[0].enemiesZone.y) {
-            this.y = this.game.entities.area[0].enemiesZone.y + this.r;
+        if (this.y - r < this.game.entities.area[0].enemiesZone.y) {
+            this.y = this.game.entities.area[0].enemiesZone.y + r;
             this.velocityY *= -1;
         }
-        if (this.y + this.r > this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.h) {
-            this.y = this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.h - this.r;
+        if (this.y + r > this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.h) {
+            this.y = this.game.entities.area[0].enemiesZone.y + this.game.entities.area[0].enemiesZone.h - r;
             this.velocityY *= -1;
         }
     }
     
-    playerCollision() {
+    playerCollision(r = this.r) {
         const player = this.game.entities.player[0];
         if (!player.isAlive) return;
-        if ((Math.sqrt((this.x - player.x) ** 2 + (this.y - player.y) ** 2)) < (this.r + player.r)) {
+        if ((Math.sqrt((this.x - player.x) ** 2 + (this.y - player.y) ** 2)) < (r + player.r)) {
             this.playerInteraction(player);
         }
     }
