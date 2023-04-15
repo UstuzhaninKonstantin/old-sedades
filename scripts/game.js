@@ -1,3 +1,8 @@
+import { Rectangle } from "./entities.js";
+import { Player } from "./player.js";
+import { areas } from "./area/areas.js";
+import { Area } from "./area/area.js";
+
 class Game {
     constructor() {
         this.canvas = document.getElementById("canvas");
@@ -14,7 +19,6 @@ class Game {
         };
         this.keysPressed = {};
         this.camera = {x: 0, y: 0};
-        this.createObjects = null;
 
         const ceil = new Image(20, 20);
         if (window.location.href === 'http://127.0.0.1:5500/') ceil.src = '../../assets/cell.png';
@@ -25,6 +29,8 @@ class Game {
     }
 
     start() {
+        this.createObjects();
+
         setInterval(() => {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             if (this.pattern) {
@@ -49,6 +55,33 @@ class Game {
 
     keyUpEvent(event) {
         this.keysPressed[event.code] = false
+    }
+
+    createObjects(){
+        this.entities.background.push(
+            new Rectangle(
+                this,
+                -10000,
+                -10000,
+                canvas.width + 20000,
+                canvas.height + 20000,
+                '#400080'
+            )
+        )
+        
+        this.entities.player.push(
+            new Player(
+                this,
+                (areas[0].fullZone.w - areas[0].enemiesZone.w) / 4,
+                areas[0].fullZone.y + areas[0].fullZone.h / 2,
+                18,
+                'cyan',
+                10,
+                name
+            )
+        )
+
+        this.entities.area.push(new Area(game, 1));
     }
 
     getRandomNumber(minimum, maximum) {
