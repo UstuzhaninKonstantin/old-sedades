@@ -1,8 +1,10 @@
 import { Circle } from "./entities.js";
+import { renderer, camera, keysPressed, entities, reset } from './game.js';
+import { Vector } from './utils.js';
 
 export class Player extends Circle {
-    constructor(game, x, y, r, c, speed, name) {
-        super(game, x, y, r, c);
+    constructor(position, radius, color, speed, name) {
+        super(position, radius, color);
         this.speed = speed;
         this.effects = {};
         this.isAlive = true;
@@ -10,27 +12,42 @@ export class Player extends Circle {
     }
 
     wallCollision() {
-        const area = this.game.entities.area[0];
+        const area = entities.area[0];
+    
+        const areaPos = area.position;
+        const { x: width, y: height } = area.size;
+
         if (!area) return;
       
-        if (this.x - this.r < area.x) this.x = area.x + this.r;
-        if (this.x + this.r > area.x + area.w) this.x = area.x + area.w - this.r;
-        if (this.y - this.r < area.y) this.y = area.y + this.r;
-        if (this.y + this.r > area.y + area.h) this.y = area.y + area.h - this.r;
-      }
+        let pos = this.position;
+        let { radius } = this;
+
+        if (pos.x - radius < areaPos.x)
+            pos.x = areaPos.x + radius;
+        
+        if (pos.x + radius > areaPos.x + width)
+            pos.x = areaPos.x + width - radius;
+        
+        if (pos.y - radius < areaPos.y)
+            pos.y = areaPos.y + radius;
+        
+        if (pos.y + radius > areaPos.y + height)
+            pos.y = areaPos.y + height - radius;
+    }
 
     move() {
         const speed = this.applyEffects();
+        const { position } = this;
 
-        if (this.game.keysPressed['KeyW'] || this.game.keysPressed['ArrowUp']) this.y -= speed;
-        if (this.game.keysPressed['KeyA'] || this.game.keysPressed['ArrowLeft']) this.x -= speed;
-        if (this.game.keysPressed['KeyS'] || this.game.keysPressed['ArrowDown']) this.y += speed;
-        if (this.game.keysPressed['KeyD'] || this.game.keysPressed['ArrowRight']) this.x += speed;
+        if (keysPressed['KeyW'] || keysPressed['ArrowUp']) position.y -= speed;
+        if (keysPressed['KeyA'] || keysPressed['ArrowLeft']) position.x -= speed;
+        if (keysPressed['KeyS'] || keysPressed['ArrowDown']) position.y += speed;
+        if (keysPressed['KeyD'] || keysPressed['ArrowRight']) position.x += speed;
     }
 
     applyEffects() {
         let speed = this.speed;
-        if (this.game.keysPressed['ShiftLeft'] || this.game.keysPressed['ShiftRight']) speed /= 2;
+        if (keysPressed['ShiftLeft'] || keysPressed['ShiftRight']) speed /= 2;
         if (this.effects.redAura) {
             speed -= this.speed * 0.3; 
         }
@@ -41,9 +58,8 @@ export class Player extends Circle {
     update() {
         if (this.isAlive) {
             this.move();
-            this.wallCollision();
-            this.game.camera.x = this.x;
-            this.game.camera.y = this.y;
+            this.wallCollision();    
+            camera.position.set(this.position.x, this.position.y);
         }
         else {
             this.handleRespawn();
@@ -51,18 +67,28 @@ export class Player extends Circle {
     }
 
     handleRespawn() {
-        if (this.game.keysPressed['KeyR']) {
-            this.game.reset();
+        if (keysPressed['KeyR']) {
+            reset();
         }
     }
 
     draw() {
         if (!this.isAlive) {
-            this.game.drawText('R to respawn.', this.game.cameraX(this.x), this.game.cameraY(this.y + this.r + 20), 'red');
-            this.game.ctx.globalAlpha = 0.5;
+            renderer.drawText(
+                'R to respawn.',
+                camera.worldToScreen(this.position)
+                    .add(new Vector(0, this.radius + 20)),
+                'red'
+            )
+            renderer.ctx.globalAlpha = 0.5;
         }
         super.draw();
-        this.game.drawText(this.name, this.game.cameraX(this.x), this.game.cameraY(this.y - this.r - 10), 'cyan');
-        this.game.ctx.globalAlpha = 1;
+        renderer.drawText(
+            this.name,
+            camera.worldToScreen(this.position)
+                .subtract(new Vector(0, this.r + 10)),
+            'cyan'
+        )
+        renderer.ctx.globalAlpha = 1;
     }
 }

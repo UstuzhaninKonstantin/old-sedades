@@ -1,8 +1,8 @@
 import { Enemy } from "./entities.js";
 
 export class DasherEnemy extends Enemy {
-    constructor(game, x, y, r, c, speed) {
-        super(game, x, y, r, c, speed);
+    constructor(position, radius, color, speed) {
+        super(position, radius, color, speed);
         this.speedMultiplier;
         this.speedNow;
     }

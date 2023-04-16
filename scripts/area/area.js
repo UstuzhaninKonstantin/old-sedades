@@ -10,12 +10,23 @@ import { ResizingEnemy } from "../enemies/ResizingEnemy.js";
 
 import { Portal } from "./portal.js";
 
-import { randomInt } from "../utils.js";
+import { randomInt, Vector } from "../utils.js";
+import { entities, renderer, camera } from '../game.js';
 
 export class Area extends Rectangle {
-    constructor(game, number) {
+    constructor(number) {
         const data = areas[number - 1];
-        super(game, data.fullZone.x, data.fullZone.y, data.fullZone.w, data.fullZone.h, data.fullZone.c);
+        super(
+            new Vector(
+                data.fullZone.x,
+                data.fullZone.y
+            ),
+            new Vector(
+                data.fullZone.w,
+                data.fullZone.h
+            ),
+            data.fullZone.c
+        );
         this.enemiesZone = data.enemiesZone;
         this.createEnemies(data.enemies);
         this.createPortals(data.portals);
@@ -25,34 +36,83 @@ export class Area extends Rectangle {
         for (const dataSet of enemies) {
 
             for (let i = 0; i < dataSet.amount; i++) {
-                const randomX = randomInt(this.enemiesZone.x, this.enemiesZone.x + this.enemiesZone.w);
-                const randomY  = randomInt(this.enemiesZone.y, this.enemiesZone.y + this.enemiesZone.h);
+                const position = new Vector(
+                    randomInt(this.enemiesZone.x, this.enemiesZone.x + this.enemiesZone.w),
+                    randomInt(this.enemiesZone.y, this.enemiesZone.y + this.enemiesZone.h)
+                )
 
                 switch (dataSet.type) {
                     case 'BasicEnemy':
-                        this.game.entities.enemies.push(new BasicEnemy(this.game, randomX, randomY, dataSet.r, 'white', dataSet.speed));
+                        entities.enemies.push(
+                            new BasicEnemy(
+                                position,
+                                dataSet.r,
+                                'white', 
+                                dataSet.speed
+                            )
+                        );
                     break;
 
                     case 'BorderEnemy':
                         const velocity = randomInt(1, 2) === 1 ? 1 : -1;
-                        this.game.entities.enemies.push(new BorderEnemy(
-                            this.game, randomX, this.enemiesZone.y + dataSet.r, dataSet.r, 'grey', dataSet.speed, velocity
-                        ));
-                        this.game.entities.enemies.push(new BorderEnemy(
-                            this.game, randomX, this.enemiesZone.y + this.enemiesZone.h - dataSet.r, dataSet.r, 'grey', dataSet.speed, velocity
-                        ));
+                        entities.enemies.push(
+                            new BorderEnemy(
+                                new Vector(
+                                    position.x,
+                                    this.enemiesZone.y + dataSet.r
+                                ),
+                                dataSet.r,
+                                'grey',
+                                dataSet.speed,
+                                velocity
+                            )
+                        );
+                        entities.enemies.push(
+                            new BorderEnemy(
+                                new Vector(
+                                    position.x,
+                                    this.enemiesZone.y + this.enemiesZone.h - dataSet.r
+                                ),
+                                dataSet.r,
+                                'grey',
+                                dataSet.speed,
+                                velocity
+                            )
+                        );
                     break;
 
                     case 'RedAuraEnemy':
-                        this.game.entities.enemies.push(new RedAuraEnemy(this.game, randomX, randomY, dataSet.r, 'red', dataSet.speed, 0.3));
+                        entities.enemies.push(
+                            new RedAuraEnemy(
+                                position,
+                                dataSet.r,
+                                'red',
+                                dataSet.speed,
+                                0.3
+                            )
+                        );
                     break;
 
                     case 'DasherEnemy':
-                        this.game.entities.enemies.push(new DasherEnemy(this.game, randomX, randomY, dataSet.r, 'blue', dataSet.speed));
+                        entities.enemies.push(
+                            new DasherEnemy(
+                                position,
+                                dataSet.r,
+                                'blue',
+                                dataSet.speed
+                            )
+                        );
                     break;
 
                     case 'ResizingEnemy':
-                        this.game.entities.enemies.push(new ResizingEnemy(this.game, randomX, randomY, dataSet.r, 'orange', dataSet.speed));
+                        entities.enemies.push(
+                            new ResizingEnemy(
+                                position,
+                                dataSet.r,
+                                'orange',
+                                dataSet.speed
+                            )
+                        );
                     break;
                 }
             }
@@ -61,16 +121,56 @@ export class Area extends Rectangle {
 
     createPortals(portals) {
         for (const dataSet of portals) {
-            this.game.entities.portals.push(new Portal(this.game, dataSet.x, dataSet.y, dataSet.w, dataSet.h, dataSet.c, dataSet.teleportsTo, dataSet.playerX));
+            entities.portals.push(
+                new Portal(
+                    new Vector(
+                        dataSet.x,
+                        dataSet.y
+                    ),
+                    new Vector(
+                        dataSet.w,
+                        dataSet.h
+                    ),
+                    dataSet.c,
+                    dataSet.teleportsTo,
+                    dataSet.playerX
+                )
+            );
         }
     }
 
 
     draw() {
         super.draw();
-        this.game.ctx.fillStyle = this.enemiesZone.c;
-        this.game.ctx.fillRect(this.game.cameraX(this.enemiesZone.x), this.game.cameraY(this.enemiesZone.y), this.enemiesZone.w, this.enemiesZone.h);
-        this.game.ctx.fillStyle = this.game.pattern;
-        this.game.ctx.fillRect(this.game.cameraX(this.enemiesZone.x), this.game.cameraY(this.enemiesZone.y), this.enemiesZone.w, this.enemiesZone.h);
+
+        renderer.ctx.fillStyle = this.enemiesZone.c;
+
+        renderer.drawRectangle(
+            camera.worldToScreen(
+                new Vector(
+                    this.enemiesZone.x,
+                    this.enemiesZone.y
+                )
+            ),
+            new Vector(
+                this.enemiesZone.w,
+                this.enemiesZone.h
+            )
+        );
+
+        renderer.ctx.fillStyle = renderer.pattern;
+
+        renderer.drawRectangle(
+            camera.worldToScreen(
+                new Vector(
+                    this.enemiesZone.x,
+                    this.enemiesZone.y
+                )
+            ),
+            new Vector(
+                this.enemiesZone.w,
+                this.enemiesZone.h
+            )
+        );
     }
 }
