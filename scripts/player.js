@@ -75,7 +75,7 @@ export class Player extends Circle {
     draw() {
         if (!this.isAlive) {
             renderer.drawText(
-                'R to respawn.',
+                "Click R to respawn.",
                 camera.worldToScreen(this.position)
                     .add(new Vector(0, this.radius + 20)),
                 'red'

@@ -11,7 +11,7 @@ export class ResizingEnemy extends Enemy {
     sizeChange() {
         switch (this.process) {
             case 'increases':
-                if (this.sizeMultiplier >= 5) {
+                if (this.sizeMultiplier >= 4) {
                     this.process = 'decreases';
                 } else {
                     this.sizeMultiplier *= 1.05;
@@ -19,7 +19,7 @@ export class ResizingEnemy extends Enemy {
             break;
 
             default:
-                if (this.sizeMultiplier <= 0.1) {
+                if (this.sizeMultiplier <= 0.2) {
                     this.process = 'increases';
                 } else {
                     this.sizeMultiplier /= 1.05;
