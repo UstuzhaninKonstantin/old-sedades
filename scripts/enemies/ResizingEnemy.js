@@ -3,7 +3,7 @@ import { Enemy } from "./entities.js";
 export class ResizingEnemy extends Enemy {
     constructor(game, x, y, r, c, speed) {
         super(game, x, y, r, c, speed);
-        this.rNow = this.r;
+        this.mainRadius = this.r;
         this.sizeMultiplier = 1;
         this.process = 'increases';
     }
@@ -27,23 +27,11 @@ export class ResizingEnemy extends Enemy {
             break;
         }
 
-        this.rNow = this.r * this.sizeMultiplier;
-    }
-
-    wallCollision() {
-        super.wallCollision(this.rNow);
-    }
-
-    playerCollision() {
-        super.playerCollision(this.rNow);
+        this.r = this.mainRadius * this.sizeMultiplier;
     }
 
     update() {
         this.sizeChange();
         super.update();
-    }
-
-    draw() {
-        super.draw(this.rNow);
     }
 }
