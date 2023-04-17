@@ -1,6 +1,7 @@
 import { canvas, start } from "./game.js";
 
 const button = document.getElementById("button");
+
 button.addEventListener('click', () => {
     const name = document.getElementById("nameInput").value;
     const menu = document.getElementById("menu");
