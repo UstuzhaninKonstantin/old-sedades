@@ -7,5 +7,5 @@ button.addEventListener('click', () => {
     menu.style.display = "none";
     canvas.style.display = "inline";
 
-    start();
+    start(name);
 });

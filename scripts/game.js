@@ -115,6 +115,8 @@ export let entities = {
     players: []
 }
 
+let name = "";
+
 export function createObjects(){
     entities.background.push(
         new Rectangle(
@@ -148,10 +150,11 @@ export function createObjects(){
 
 let startedGame = false;
 
-export function start(){
+export function start(name_p){
     if(startedGame){
         throw new Error('Already started a game');
     }
+    name = name_p;
 
     startedGame = true;
 

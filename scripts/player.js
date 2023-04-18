@@ -86,7 +86,7 @@ export class Player extends Circle {
         renderer.drawText(
             this.name,
             camera.worldToScreen(this.position)
-                .subtract(new Vector(0, this.r + 10)),
+                .subtract(new Vector(0, this.radius + 10)),
             'cyan'
         )
         renderer.ctx.globalAlpha = 1;
